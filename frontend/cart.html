@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart - ShopEase</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="navbar-brand">
+                🛒 ShopEase
+            </a>
+            <ul class="navbar-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="cart.html">Cart <span class="cart-badge" id="cartCount">0</span></a></li>
+                <li><a href="orders.html">Orders</a></li>
+                <li><a href="#" id="authLink">Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="section-header">
+            <h1 class="section-title">Shopping Cart</h1>
+            <p class="section-subtitle">Review your items before checkout</p>
+        </div>
+
+        <!-- Alert Messages -->
+        <div id="alertContainer"></div>
+
+        <!-- Loading State -->
+        <div id="loadingState" class="loading hidden">
+            <div class="spinner"></div>
+        </div>
+
+        <!-- Empty Cart State -->
+        <div id="emptyCart" class="empty-state hidden">
+            <div class="empty-state-icon">🛒</div>
+            <h3 class="empty-state-title">Your cart is empty</h3>
+            <p>Start shopping to add items to your cart</p>
+            <a href="index.html" class="btn btn-primary mt-2">Continue Shopping</a>
+        </div>
+
+        <!-- Cart Content -->
+        <div id="cartContent" class="hidden">
+            <div style="display: grid; grid-template-columns: 1fr 350px; gap: 2rem; align-items: start;">
+                <!-- Cart Items -->
+                <div id="cartItems"></div>
+
+                <!-- Cart Summary -->
+                <div class="cart-summary">
+                    <h3 style="margin-bottom: 1.5rem;">Order Summary</h3>
+                    <div class="summary-row">
+                        <span>Subtotal:</span>
+                        <span id="subtotal">$0.00</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Total Items:</span>
+                        <span id="totalItems">0</span>
+                    </div>
+                    <div class="summary-row" style="border-bottom: none;">
+                        <span class="summary-total">Total:</span>
+                        <span class="summary-total" id="total">$0.00</span>
+                    </div>
+                    <button class="btn btn-primary" style="width: 100%; margin-top: 1rem;"
+                        onclick="proceedToCheckout()">
+                        Proceed to Checkout
+                    </button>
+                    <button class="btn btn-secondary" style="width: 100%; margin-top: 0.5rem;" onclick="clearCart()">
+                        Clear Cart
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts/app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            checkAuth();
+            loadCart();
+            updateCartBadge();
+        });
+    </script>
+</body>
+
+</html>

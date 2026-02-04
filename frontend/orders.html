@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Orders - ShopEase</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="navbar-brand">
+                🛒 ShopEase
+            </a>
+            <ul class="navbar-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="cart.html">Cart <span class="cart-badge" id="cartCount">0</span></a></li>
+                <li><a href="orders.html">Orders</a></li>
+                <li><a href="#" id="authLink">Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="section-header">
+            <h1 class="section-title">My Orders</h1>
+            <p class="section-subtitle">Track and view your order history</p>
+        </div>
+
+        <!-- Alert Messages -->
+        <div id="alertContainer"></div>
+
+        <!-- Loading State -->
+        <div id="loadingState" class="loading hidden">
+            <div class="spinner"></div>
+        </div>
+
+        <!-- Empty State -->
+        <div id="emptyOrders" class="empty-state hidden">
+            <div class="empty-state-icon">📦</div>
+            <h3 class="empty-state-title">No orders yet</h3>
+            <p>Start shopping to place your first order</p>
+            <a href="index.html" class="btn btn-primary mt-2">Start Shopping</a>
+        </div>
+
+        <!-- Orders List -->
+        <div id="ordersList"></div>
+    </div>
+
+    <script src="scripts/app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            checkAuth();
+            loadOrders();
+            updateCartBadge();
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - ShopEase</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="navbar-brand">
+                🛒 ShopEase
+            </a>
+            <ul class="navbar-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="cart.html">Cart <span class="cart-badge" id="cartCount">0</span></a></li>
+                <li><a href="orders.html">Orders</a></li>
+                <li><a href="#" id="authLink">Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="section-header">
+            <h1 class="section-title">Checkout</h1>
+            <p class="section-subtitle">Complete your order</p>
+        </div>
+
+        <!-- Alert Messages -->
+        <div id="alertContainer"></div>
+
+        <!-- Checkout Form -->
+        <div style="display: grid; grid-template-columns: 1fr 400px; gap: 2rem; align-items: start;">
+            <!-- Shipping Information -->
+            <div class="card">
+                <div class="card-body">
+                    <h3 style="margin-bottom: 1.5rem;">Shipping Information</h3>
+                    <form id="checkoutForm">
+                        <div class="form-group">
+                            <label class="form-label">Full Name</label>
+                            <input type="text" id="fullName" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Phone Number</label>
+                            <input type="tel" id="phone" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Shipping Address</label>
+                            <textarea id="shippingAddress" class="form-textarea" required
+                                placeholder="Street address, City, State, ZIP Code"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Payment Method</label>
+                            <select id="paymentMethod" class="filter-select">
+                                <option value="cash_on_delivery">Cash on Delivery</option>
+                                <option value="credit_card">Credit Card</option>
+                                <option value="debit_card">Debit Card</option>
+                                <option value="upi">UPI</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Order Summary -->
+            <div>
+                <div class="cart-summary">
+                    <h3 style="margin-bottom: 1.5rem;">Order Summary</h3>
+                    <div id="orderItems" style="margin-bottom: 1rem; max-height: 300px; overflow-y: auto;"></div>
+                    <div class="summary-row">
+                        <span>Subtotal:</span>
+                        <span id="subtotal">$0.00</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Total Items:</span>
+                        <span id="totalItems">0</span>
+                    </div>
+                    <div class="summary-row" style="border-bottom: none;">
+                        <span class="summary-total">Total:</span>
+                        <span class="summary-total" id="total">$0.00</span>
+                    </div>
+                    <button class="btn btn-success" style="width: 100%; margin-top: 1rem;" onclick="placeOrder()">
+                        Place Order
+                    </button>
+                    <a href="cart.html" class="btn btn-secondary"
+                        style="width: 100%; margin-top: 0.5rem; display: block;">
+                        Back to Cart
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts/app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            checkAuth();
+            loadCheckoutData();
+            updateCartBadge();
+            loadUserProfile();
+        });
+    </script>
+</body>
+
+</html>
